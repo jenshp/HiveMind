@@ -60,10 +60,10 @@ class HiveMindAdminScreenTests extends Specification {
 
     def "render HiveMind Admin screens with no required parameters"() {
         when:
-        Set<String> screensToSkip = new HashSet()
+        Set<String> screensToSkip = new HashSet(['wiki', 'EditWikiPage', 'WikiCommentNested', 'WikiCommentReply'])
         List<String> screenPaths = screenTest.getNoRequiredParameterPaths(screensToSkip)
         for (String screenPath in screenPaths) {
-            ScreenTestRender str = screenTest.render(screenPath, null, null)
+            ScreenTestRender str = screenTest.render(screenPath, [lastStandalone:"-2"], null)
             logger.info("Rendered ${screenPath} in ${str.getRenderTime()}ms, ${str.output?.length()} characters")
         }
 
@@ -74,7 +74,7 @@ class HiveMindAdminScreenTests extends Specification {
     @Unroll
     def "render HiveMind Admin screen (#screenPath, #containsTextList)"() {
         setup:
-        ScreenTestRender str = screenTest.render(screenPath, null, null)
+        ScreenTestRender str = screenTest.render(screenPath, [lastStandalone:"-2"], null)
         // logger.info("Rendered ${screenPath} in ${str.getRenderTime()}ms, output:\n${str.output}")
         boolean containsAll = true
         for (String containsText in containsTextList) {
@@ -131,7 +131,7 @@ class HiveMindAdminScreenTests extends Specification {
 
         // Accounting/Invoice
         "Accounting/Invoice/FindInvoice?statusId_op=in&statusId=InvoiceReceived,InvoiceApproved&toPartyId=ORG_ZIZI_RETAIL" |
-                ['Ziddleman Incorporated', 'Ziziwork Retail', 'Sales/Purchase']
+                ['Ziddleman', 'Ziziwork Retail', 'Sales/Purchase']
         "Accounting/Invoice/EditInvoice?invoiceId=55100" | ['Current: Approved', 'Unpaid $1,824.25', 'ORG_ZIZI_RETAIL']
         "Accounting/Invoice/EditInvoice?invoiceId=55400" |
                 ['ORG_ZIZI_RETAIL', 'Current: Payment Sent', 'Applied Payments $23,830.00']
@@ -142,10 +142,10 @@ class HiveMindAdminScreenTests extends Specification {
         // Accounting/Payment
         "Accounting/Payment/EditPayment?paymentId=55400" |
                 ['ORG_ZIZI_RETAIL', 'Applied $23,830.00', 'Current: Delivered']
-        "Accounting/Payment/PaymentCheck?paymentIds=55400&renderMode=xsl-fo" | ['Ziddleman Incorporated',
+        "Accounting/Payment/PaymentCheck?paymentIds=55400&renderMode=xsl-fo" | ['Ziddleman',
                 'Twenty three thousand eight hundred thirty and 00/100', 'Picker Bot 2000']
         "Accounting/Payment/PaymentDetail?paymentIds=55400&renderMode=xsl-fo" |
-                ['Ziddleman Incorporated', '$23,830.00', 'Picker Bot 2000']
+                ['Ziddleman', '$23,830.00', 'Picker Bot 2000']
 
         // Accounting Other
         "Accounting/FinancialAccount/EditFinancialAccount?finAccountId=55700" |
