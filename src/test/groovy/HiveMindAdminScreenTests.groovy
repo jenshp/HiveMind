@@ -107,11 +107,11 @@ class HiveMindAdminScreenTests extends Specification {
         "Client/EditProjects?partyId=ORG_ACME" | ['HM - HiveMind PM Build Out', 'Customer - Bill To']
         "Client/EditUsers?partyId=ORG_ACME" | ['Acme', 'Client Manager']
 
-        // User
-        "User/EditUser?partyId=EX_JOHN_DOE" | ['john.doe@test.com', 'John']
-        "User/EditProjects?partyId=EX_JOHN_DOE" | ['Manager', 'Programmer Lead', 'Assigned']
-        "User/EditTasks?partyId=EX_JOHN_DOE" | ['HM-004', 'Dashboard My Tasks', 'Assigned']
-        "User/EditRequests?partyId=EX_JOHN_DOE" | ['DEMO_001', 'Add Create Request on dashboard', 'Assignee']
+        // Party
+        "Party/EditParty?partyId=EX_JOHN_DOE" | ['john.doe@moqui.org', 'John']
+        "Party/EditProjects?partyId=EX_JOHN_DOE" | ['Manager', 'Programmer Lead', 'Assigned']
+        "Party/EditTasks?partyId=EX_JOHN_DOE" | ['HM-004', 'Dashboard My Tasks', 'Assigned']
+        "Party/EditRequests?partyId=EX_JOHN_DOE" | ['DEMO_001', 'Add Create Request on dashboard', 'Assignee']
 
         // Team
         "Team/EditTeam?partyId=ORG_ZIZI_DEVA" | ['Ziziwork Dev Team A']
@@ -135,13 +135,13 @@ class HiveMindAdminScreenTests extends Specification {
         "Accounting/Invoice/EditInvoice?invoiceId=55100" | ['Current: Approved', 'Unpaid $1,824.25', 'ORG_ZIZI_RETAIL']
         "Accounting/Invoice/EditInvoice?invoiceId=55400" |
                 ['ORG_ZIZI_RETAIL', 'Current: Payment Sent', 'Applied Payments $23,830.00']
-        "Accounting/Invoice/EditInvoiceItems?invoiceId=55400" | ['Demo Product One-One', 'Sales - Shipping and Handling']
+        "Accounting/Invoice/EditInvoiceItems?invoiceId=55400" | ['Demo Product One-One', 'Shipping and Handling']
         "Accounting/Invoice/PrintInvoice?invoiceId=55400&renderMode=xsl-fo" |
                 ['1350 E. Flamingo Rd. #9876, Las Vegas, NV 89119-5263', 'Asset - Inventory']
 
         // Accounting/Payment
         "Accounting/Payment/EditPayment?paymentId=55400" |
-                ['ORG_ZIZI_RETAIL', 'Applied $23,830.00', 'Current: Delivered']
+                ['ZIRET', 'Applied $23,830.00', 'Current: Delivered']
         "Accounting/Payment/PaymentCheck?paymentIds=55400&renderMode=xsl-fo" | ['Ziddleman',
                 'Twenty three thousand eight hundred thirty and 00/100', 'Picker Bot 2000']
         "Accounting/Payment/PaymentDetail?paymentIds=55400&renderMode=xsl-fo" |
