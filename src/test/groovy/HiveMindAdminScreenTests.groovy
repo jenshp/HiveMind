@@ -153,24 +153,25 @@ class HiveMindAdminScreenTests extends Specification {
         "Accounting/FinancialAccount/FinancialAccountTrans?finAccountId=55700" |
                 ['Customer Service Credit', 'Ziziwork Retail ']
         "Accounting/Transaction/EditTransaction?acctgTransId=55700" |
-                ['Joe Public', '430000000', 'CUSTOMER SERVICE CREDITS']
-        "Accounting/GlAccount/EditGlAccount?glAccountId=110000000" | ['CASH AND EQUIVALENT ASSET', 'Ziziwork Industries']
+                ['Joe Public', '430000000', 'Customer Service Credits']
+        "Accounting/GlAccount/EditGlAccount?glAccountId=110000000" | ['Cash and Equivalent Asset', 'Ziziwork Industries']
 
         // Accounting/Reports
+        // NOTE: these are designed to handle account masks of ###-###-### or even down to the 5 digit ###-##
         "Accounting/Reports/BalanceSheet?organizationPartyId=ORG_ZIZI_RETAIL&timePeriodIdList=55100&detail=true" |
-                ["121000000: ACCOUNTS RECEIVABLE", "210000000: ACCOUNTS PAYABLE"]
+                ["121-00", "Accounts Payable"]
         "Accounting/Reports/IncomeStatement?organizationPartyId=ORG_ZIZI_RETAIL&timePeriodIdList=55100&detail=true" |
-                ["411000000: PRODUCT SALES", "614200000: NETWORK CHARGES"]
+                ["411-00", "Network Charges"]
         "Accounting/Reports/CashFlowStatement?organizationPartyId=ORG_ZIZI_RETAIL&timePeriodIdList=55100&detail=true" |
-                ["111100000: GENERAL CHECKING ACCOUNT", "182000000: ACCUMULATED DEPRECIATION - EQUIPMENT"]
+                ["111-10", "Finished Good Inventory"]
         "Accounting/Reports/RetainedEarningsStatement?organizationPartyId=ORG_ZIZI_RETAIL&timePeriodIdList=55100" |
                 ["Net Earnings", "Ziziwork Retail Fiscal"]
         "Accounting/Reports/FinancialRatios?organizationPartyId=ORG_ZIZI_RETAIL&timePeriodIdList=55100" |
                 ["Total Assets", "Accounts Receivable"]
 
         "Accounting/Reports/PostedAmountSummary?organizationPartyId=ORG_ZIZI_RETAIL&dateRange_poffset=0&dateRange_period=Year" |
-                ["ACCOUNTS PAYABLE", "DEPRECIATION - EQUIPMENT"]
+                ["Accounts Payable", "Depreciation - Equipment"]
         "Accounting/Reports/PostedBalanceSummary?organizationPartyId=ORG_ZIZI_RETAIL&timePeriodId=55100" |
-                ["CUSTOMER SERVICE CREDITS (Contra Revenue)", "NET INCOME (Income)"]
+                ["Customer Service Credits (Contra Revenue)", "Net Income (Income)"]
     }
 }
